@@ -5,5 +5,6 @@ COPY ./requirements.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
 #CMD ["flask", "run", "--host", "0.0.0.0"]
-RUN chmod u+x ./entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+RUN #chmod u+x ./entrypoint.sh
+#ENTRYPOINT ["./entrypoint.sh"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:create_app()"]
